@@ -45,7 +45,7 @@ class CreditoTest {
         // then
         assertNotNull(actualCredito);
         assertNotNull(actualCredito.getId());
-        assertEquals(expectedId, actualCredito.getId().getLongValue());
+        assertEquals(expectedId, actualCredito.getId().getValue());
         assertEquals(expectedNumeroCredito, actualCredito.getNumeroCredito());
         assertEquals(expectedNumeroNfse, actualCredito.getNumeroNfse());
         assertEquals(expectedDataConstituicao, actualCredito.getDataConstituicao());
@@ -56,8 +56,6 @@ class CreditoTest {
         assertEquals(expectedValorFaturado, actualCredito.getValorFaturado());
         assertEquals(expectedValorDeducao, actualCredito.getValorDeducao());
         assertEquals(expectedBaseCalculo, actualCredito.getBaseCalculo());
-        assertNotNull(actualCredito.getCreatedAt());
-        assertNotNull(actualCredito.getUpdatedAt());
     }
 
     @Test
@@ -429,9 +427,6 @@ class CreditoTest {
 
         assertDoesNotThrow(() -> aCredito.validate(new ThrowsValidationHandler()));
 
-        final var createdAt = aCredito.getCreatedAt();
-        final var updatedAt = aCredito.getUpdatedAt();
-
         // when
         final var actualCredito = aCredito.update(
             expectedNumeroCredito,
@@ -460,7 +455,6 @@ class CreditoTest {
         assertEquals(expectedValorFaturado, actualCredito.getValorFaturado());
         assertEquals(expectedValorDeducao, actualCredito.getValorDeducao());
         assertEquals(expectedBaseCalculo, actualCredito.getBaseCalculo());
-        assertEquals(createdAt, actualCredito.getCreatedAt());
     }
 
     @Test
@@ -492,9 +486,7 @@ class CreditoTest {
             expectedAliquota,
             expectedValorFaturado,
             expectedValorDeducao,
-            expectedBaseCalculo,
-            expectedCreatedAt,
-            expectedUpdatedAt
+            expectedBaseCalculo
         );
 
         // then
@@ -510,7 +502,5 @@ class CreditoTest {
         assertEquals(expectedValorFaturado, actualCredito.getValorFaturado());
         assertEquals(expectedValorDeducao, actualCredito.getValorDeducao());
         assertEquals(expectedBaseCalculo, actualCredito.getBaseCalculo());
-        assertEquals(expectedCreatedAt, actualCredito.getCreatedAt());
-        assertEquals(expectedUpdatedAt, actualCredito.getUpdatedAt());
     }
 }
