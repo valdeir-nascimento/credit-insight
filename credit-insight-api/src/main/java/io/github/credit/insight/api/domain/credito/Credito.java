@@ -4,9 +4,7 @@ import io.github.credit.insight.api.domain.AggregateRoot;
 import io.github.credit.insight.api.domain.validation.ValidationHandler;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class Credito extends AggregateRoot<CreditoID> {
 
@@ -21,9 +19,6 @@ public class Credito extends AggregateRoot<CreditoID> {
     private BigDecimal valorDeducao;
     private BigDecimal baseCalculo;
 
-    private Instant createdAt;
-    private Instant updatedAt;
-
     private Credito(
         final CreditoID id,
         final String numeroCredito,
@@ -35,9 +30,7 @@ public class Credito extends AggregateRoot<CreditoID> {
         final BigDecimal aliquota,
         final BigDecimal valorFaturado,
         final BigDecimal valorDeducao,
-        final BigDecimal baseCalculo,
-        final Instant createdAt,
-        final Instant updatedAt
+        final BigDecimal baseCalculo
     ) {
         super(id);
 
@@ -52,8 +45,6 @@ public class Credito extends AggregateRoot<CreditoID> {
         this.valorDeducao = valorDeducao;
         this.baseCalculo = baseCalculo;
 
-        this.createdAt = Objects.requireNonNull(createdAt, "'createdAt' cannot be null");
-        this.updatedAt = Objects.requireNonNull(updatedAt, "'updatedAt' cannot be null");
     }
 
     public static Credito newCredito(
@@ -70,7 +61,6 @@ public class Credito extends AggregateRoot<CreditoID> {
         final BigDecimal baseCalculo
     ) {
         final var creditoId = CreditoID.from(id);
-        final var now = Instant.now();
 
         return new Credito(
             creditoId,
@@ -83,9 +73,7 @@ public class Credito extends AggregateRoot<CreditoID> {
             aliquota,
             valorFaturado,
             valorDeducao,
-            baseCalculo,
-            now,
-            now
+            baseCalculo
         );
     }
 
@@ -100,9 +88,8 @@ public class Credito extends AggregateRoot<CreditoID> {
         final BigDecimal aliquota,
         final BigDecimal valorFaturado,
         final BigDecimal valorDeducao,
-        final BigDecimal baseCalculo,
-        final Instant createdAt,
-        final Instant updatedAt
+        final BigDecimal baseCalculo
+
     ) {
         return new Credito(
             id,
@@ -115,9 +102,7 @@ public class Credito extends AggregateRoot<CreditoID> {
             aliquota,
             valorFaturado,
             valorDeducao,
-            baseCalculo,
-            createdAt,
-            updatedAt
+            baseCalculo
         );
     }
 
@@ -149,8 +134,6 @@ public class Credito extends AggregateRoot<CreditoID> {
         this.valorFaturado = valorFaturado;
         this.valorDeducao = valorDeducao;
         this.baseCalculo = baseCalculo;
-
-        this.updatedAt = Instant.now();
 
         return this;
     }
@@ -198,13 +181,4 @@ public class Credito extends AggregateRoot<CreditoID> {
     public BigDecimal getBaseCalculo() {
         return baseCalculo;
     }
-
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
-    public Instant getUpdatedAt() {
-        return updatedAt;
-    }
-
 }

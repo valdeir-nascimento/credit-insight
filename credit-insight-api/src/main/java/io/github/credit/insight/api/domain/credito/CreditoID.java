@@ -21,11 +21,8 @@ public class CreditoID extends Identifier {
     }
 
     @Override
-    public String getValue() {
-        return String.valueOf(value);
-    }
-
-    public Long getLongValue() {
+    public Long getValue() {
         return value;
     }
+
 }
