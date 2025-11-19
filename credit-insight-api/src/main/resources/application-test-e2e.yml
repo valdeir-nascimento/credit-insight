@@ -1,0 +1,9 @@
+logging:
+  level:
+    ROOT: info
+
+postgres:
+  username: dev_user
+  password: dev_pass
+  schema: credit_insight_db
+  url: localhost:5432
